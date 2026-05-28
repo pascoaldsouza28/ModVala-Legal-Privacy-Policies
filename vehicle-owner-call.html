@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ModVala Call Request</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0;
+      background: #090b0f;
+      color: #fff;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      padding: 18px;
+    }
+    main {
+      max-width: 420px;
+      margin: auto;
+      background: #11151d;
+      border: 1px solid #a6ff2a66;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 20px 60px #0008;
+    }
+    .brand {
+      color: #a6ff2a;
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing: .04em;
+    }
+    p { color: #dce2ea; line-height: 1.4; }
+    label { display: block; margin-top: 10px; font-weight: 800; }
+    input, textarea {
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 5px;
+      border: 1px solid #a6ff2a77;
+      border-radius: 12px;
+      background: #0b0f15;
+      color: white;
+      padding: 12px;
+      font: inherit;
+    }
+    textarea { min-height: 92px; }
+    button {
+      width: 100%;
+      margin-top: 14px;
+      border: 0;
+      border-radius: 999px;
+      background: #a6ff2a;
+      color: #071008;
+      padding: 14px;
+      font-weight: 900;
+    }
+    button:disabled { opacity: .6; }
+    .note { font-size: 12px; }
+    .ok { color: #a6ff2a; }
+    .e { color: #ff6070; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="brand">MODVALA</div>
+    <h1>Send call request</h1>
+    <p>The owner number is private. Fill this form and ModVala will notify the owner to call you.</p>
+    <form id="f">
+      <label>Name *</label>
+      <input id="n" maxlength="80" autocomplete="name" required>
+      <label>Mobile *</label>
+      <input id="p" inputmode="tel" maxlength="18" autocomplete="tel" required>
+      <label>Reason *</label>
+      <textarea id="r" maxlength="220" required></textarea>
+      <button id="s">Send notification to call me</button>
+      <p id="m"></p>
+    </form>
+    <p class="note">Disclaimer: Use only for genuine vehicle-owner contact. Your name, phone and reason are sent to the owner. The owner phone number is never shown on this page.</p>
+  </main>
+  <script>
+    const token = new URLSearchParams(location.search).get('t') || '';
+    const endpoint = 'https://vjmwmuljlevfndbmvdrn.supabase.co/functions/v1/vehicle-owner-call';
+    f.onsubmit = async (event) => {
+      event.preventDefault();
+      s.disabled = true;
+      m.className = '';
+      m.textContent = 'Sending...';
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            token,
+            name: n.value,
+            phone: p.value,
+            reason: r.value,
+          }),
+        });
+        const data = await response.json();
+        if (!response.ok || data.error) throw Error(data.error || 'Failed');
+        f.reset();
+        m.className = 'ok';
+        m.textContent = 'Sent. Owner notified.';
+      } catch (error) {
+        m.className = 'e';
+        m.textContent = error.message || String(error);
+      } finally {
+        s.disabled = false;
+      }
+    };
+  </script>
+</body>
+</html>
