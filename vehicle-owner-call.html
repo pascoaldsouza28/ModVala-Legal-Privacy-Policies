@@ -30,7 +30,7 @@
     }
     p { color: #dce2ea; line-height: 1.4; }
     label { display: block; margin-top: 10px; font-weight: 800; }
-    input, textarea {
+    input, textarea, select {
       width: 100%;
       box-sizing: border-box;
       margin-top: 5px;
@@ -56,6 +56,24 @@
     .note { font-size: 12px; }
     .ok { color: #a6ff2a; }
     .e { color: #ff6070; }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      background: rgba(0, 0, 0, .72);
+      padding: 18px;
+    }
+    .overlay.open { display: grid; }
+    .modal {
+      max-width: 420px;
+      background: #11151d;
+      border: 1px solid #a6ff2a88;
+      border-radius: 18px;
+      padding: 18px;
+    }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .secondary { background: #252b35; color: #fff; }
   </style>
 </head>
 <body>
@@ -69,20 +87,41 @@
       <label>Mobile *</label>
       <input id="p" inputmode="tel" maxlength="18" autocomplete="tel" required>
       <label>Reason *</label>
-      <textarea id="r" maxlength="220" required></textarea>
+      <select id="reasonType" required>
+        <option value="">Select reason</option>
+        <option>Vehicle is blocking me</option>
+        <option>Lights or hazard are on</option>
+        <option>Window/door looks open</option>
+        <option>Accident or damage noticed</option>
+        <option>Urgent safety concern</option>
+        <option>Other</option>
+      </select>
+      <label>More details / custom reason</label>
+      <textarea id="r" maxlength="220" placeholder="Add exact spot or short message"></textarea>
       <button id="s">Send notification to call me</button>
       <p id="m"></p>
     </form>
     <p class="note">Disclaimer: Use only for genuine vehicle-owner contact. Your name, phone and reason are sent to the owner. The owner phone number is never shown on this page.</p>
   </main>
+  <div id="consent" class="overlay" role="dialog" aria-modal="true">
+    <div class="modal">
+      <h2>Share your number?</h2>
+      <p class="note">By agreeing, you choose to share your name, phone number and reason with the vehicle owner through ModVala for this contact request only. Do not submit false, abusive or unsafe messages.</p>
+      <div class="actions">
+        <button id="cancel" class="secondary" type="button">Cancel</button>
+        <button id="agree" type="button">Agree & send</button>
+      </div>
+    </div>
+  </div>
   <script>
     const token = new URLSearchParams(location.search).get('t') || '';
     const endpoint = 'https://vjmwmuljlevfndbmvdrn.supabase.co/functions/v1/vehicle-owner-call';
-    f.onsubmit = async (event) => {
-      event.preventDefault();
+    let pendingReason = '';
+    const submitRequest = async () => {
       s.disabled = true;
       m.className = '';
       m.textContent = 'Sending...';
+      consent.classList.remove('open');
       try {
         const response = await fetch(endpoint, {
           method: 'POST',
@@ -91,7 +130,7 @@
             token,
             name: n.value,
             phone: p.value,
-            reason: r.value,
+            reason: pendingReason,
           }),
         });
         const data = await response.json();
@@ -106,6 +145,20 @@
         s.disabled = false;
       }
     };
+    f.onsubmit = (event) => {
+      event.preventDefault();
+      const selected = reasonType.value.trim();
+      const manual = r.value.trim();
+      if (selected === 'Other' && !manual) {
+        m.className = 'e';
+        m.textContent = 'Please enter your reason.';
+        return;
+      }
+      pendingReason = manual ? `${selected}: ${manual}` : selected;
+      consent.classList.add('open');
+    };
+    cancel.onclick = () => consent.classList.remove('open');
+    agree.onclick = submitRequest;
   </script>
 </body>
 </html>
