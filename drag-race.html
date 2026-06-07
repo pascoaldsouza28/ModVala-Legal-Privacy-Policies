@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ModVala Drag — How To Play, Points &amp; Credits</title>
+  <meta name="description" content="Complete guide to ModVala Drag: how to play, controls, scoring, credit economy, how your car specs and verified mods affect race results.">
+  <meta name="author" content="Pascoal Dsouza">
+  <link rel="stylesheet" href="legal.css">
+  <style>
+    .nav-back {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .toc {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 8px;
+      margin: 18px 0 8px;
+    }
+    .toc a {
+      display: block;
+      padding: 10px 14px;
+      background: rgba(182, 255, 59, 0.06);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .toc a:hover { background: rgba(182, 255, 59, 0.14); text-decoration: none; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 22px;
+      font-size: 14px;
+    }
+    table th, table td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      color: var(--muted);
+    }
+    table thead th {
+      background: rgba(182, 255, 59, 0.05);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    table tbody tr:hover { background: rgba(255,255,255,0.03); }
+    .kbd {
+      display: inline-block;
+      padding: 1px 8px;
+      background: #1d2433;
+      border: 1px solid #2c3548;
+      border-radius: 5px;
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 12px;
+      color: var(--accent);
+    }
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-right: 6px;
+    }
+    .pill-good { background: rgba(77, 211, 124, 0.15); color: #4DD37C; border: 1px solid rgba(77, 211, 124, 0.4); }
+    .pill-warn { background: rgba(255, 179, 0, 0.15); color: #FFB300; border: 1px solid rgba(255, 179, 0, 0.4); }
+    .pill-bad  { background: rgba(255, 59, 85, 0.15); color: var(--danger); border: 1px solid rgba(255, 59, 85, 0.4); }
+    .formula {
+      background: #0c1018;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 13px;
+      color: #d8e1ec;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .modvala-footer {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid #2c3548;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #888;
+      font-family: inherit;
+    }
+    .modvala-footer a { color: var(--link); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="nav-back" href="index.html">&larr; Back to ModVala Legal Centre</a>
+      <div class="brand">ModVala &middot; Drag Mode</div>
+      <h1>How to play, scoring &amp; credits</h1>
+      <p>ModVala Drag is a quarter-mile racing mode that runs real longitudinal physics on the cars in your garage. Power, weight, traction, drag and gearing all matter &mdash; your build is what races, not a flat lap counter.</p>
+      <p>This page explains <strong>how to play</strong>, the <strong>points &amp; credits economy</strong>, and exactly <strong>how your car&rsquo;s specs and installed mods are turned into race performance</strong>. Read it once and you&rsquo;ll know how to climb the board.</p>
+      <p><strong>Last updated:</strong> 07 June 2026</p>
+    </div>
+  </header>
+  <main>
+    <section class="card">
+      <h2 style="margin-top:6px;">Contents</h2>
+      <nav class="toc">
+        <a href="#start">Getting started</a>
+        <a href="#controls">Controls</a>
+        <a href="#tree">Christmas tree &amp; reaction time</a>
+        <a href="#tach">The tach sweep &amp; shift window</a>
+        <a href="#physics">How your car&rsquo;s specs are used</a>
+        <a href="#mods">How mods affect your race</a>
+        <a href="#points">Race points &amp; leaderboard</a>
+        <a href="#credits">Credits &amp; the economy</a>
+        <a href="#pro">Pro features &amp; gates</a>
+        <a href="#fair">Fairness rules &amp; caps</a>
+        <a href="#faq">FAQ &amp; troubleshooting</a>
+      </nav>
+    </section>
+
+    <section class="card" id="start">
+      <h2>Getting started</h2>
+      <ol>
+        <li><strong>Add a car to your garage.</strong> Pick from the catalog or add a custom make/model/year. Custom vehicles have stats auto-fetched in the background, so do not type any HP or weight numbers yourself.</li>
+        <li><strong>Open ModVala Drag</strong> from the dashboard or from any garage car&rsquo;s &ldquo;Test on the strip&rdquo; button.</li>
+        <li><strong>Pick your garage car</strong> (one race uses one car). The card shows the final race-ready power and weight after your verified mods are applied.</li>
+        <li><strong>Choose your opponent</strong> from the AI roster &mdash; <em>Rookie</em>, <em>Pro</em>, or <em>Elite</em> &mdash; or pick your own ghost from a previous personal best.</li>
+        <li><strong>Pick your build mode:</strong>
+          <ul>
+            <li><span class="pill pill-good">Verified Installed</span> &mdash; uses only mods marked verified &amp; installed. Default. Counts for points.</li>
+            <li><span class="pill pill-warn">Planned Build</span> &mdash; uses planned-but-not-installed mods too. Useful to simulate a future build. Free vs AI; costs credits in PvP.</li>
+          </ul>
+        </li>
+        <li><strong>Tap <span class="kbd">Stage the run</span></strong>. The Christmas tree fires; the 3-second tutorial popup shows the controls.</li>
+      </ol>
+    </section>
+
+    <section class="card" id="controls">
+      <h2>Controls</h2>
+      <p>The race screen is laid out like a real driver&rsquo;s seat:</p>
+      <ul>
+        <li><strong>GAS pedal</strong> &mdash; bottom-right corner, foot-pedal shape. Hold your thumb on it to throttle. The pedal tilts forward and glows accent when pressed.</li>
+        <li><strong>Gear knob</strong> &mdash; bottom-left corner, leather-stitched ball with shaft. Tap the <strong>upper half</strong> to up-shift, the <strong>lower half</strong> to down-shift. The knob tilts visibly each shift.</li>
+        <li><strong>Tach sweep</strong> &mdash; middle of the dash. A continuous arc that fills from idle toward redline; an amber chevron marks the optimal shift rpm.</li>
+        <li><strong>Speedometer</strong> &mdash; left of the tach. Big &ldquo;kmh&rdquo; number.</li>
+        <li><strong>Gear &amp; timer</strong> &mdash; right of the tach. Current gear over total, elapsed seconds since the green.</li>
+        <li><strong>Progress bar</strong> &mdash; below the dash. Hash marks at 60ft, 330ft, 1/8 mile, 1000ft, and the finish.</li>
+        <li><strong>Rear-view mirror</strong> &mdash; top center. Two dots show the relative positions of you and your opponent on the strip.</li>
+        <li><strong>Throttle-shift interlock</strong> &mdash; the gear knob is rejected (flashes red, heavy haptic) if you try to shift while the gas is still held. Lift, shift, re-throttle.</li>
+      </ul>
+    </section>
+
+    <section class="card" id="tree">
+      <h2>Christmas tree &amp; reaction time</h2>
+      <p>ModVala uses an <strong>NHRA pro tree</strong>: three amber lights drop at 0.4-second intervals, then green. Your reaction time is the milliseconds between the green going on and you slamming the gas.</p>
+      <ul>
+        <li><strong>Perfect:</strong> &lt; 0.20 s &mdash; full launch bonus.</li>
+        <li><strong>Great:</strong> 0.20&ndash;0.30 s &mdash; clean launch.</li>
+        <li><strong>OK:</strong> 0.30&ndash;0.45 s &mdash; slightly off the line.</li>
+        <li><strong>Slow:</strong> 0.45+ s &mdash; you&rsquo;ll need a strong run to make it up.</li>
+        <li><strong>Redlight:</strong> tapping gas <em>before</em> the green = automatic loss for that round. No points awarded, no penalty other than the loss.</li>
+      </ul>
+      <p>Tip from the pit lane: watch the <em>bottom amber</em>, not the green. By the time you see the green, your thumb is already late.</p>
+    </section>
+
+    <section class="card" id="tach">
+      <h2>The tach sweep &amp; shift window</h2>
+      <p>The tachometer fills as a continuous arc that sweeps from idle (start) toward redline. It changes color by zone so you can read the shift target at a glance:</p>
+      <ul>
+        <li><span class="pill pill-good">Accent</span> &mdash; below the shift window. Hold the gas, climb rpm.</li>
+        <li><span class="pill pill-warn">Amber</span> &mdash; inside the shift window (within &plusmn;5% of the optimal shift rpm). Shift now.</li>
+        <li><span class="pill pill-bad">Red</span> &mdash; you&rsquo;re past redline; you&rsquo;re losing power and risking a bad shift.</li>
+      </ul>
+      <p>An amber chevron sits just outside the arc at the optimal shift point. The closer to the chevron you shift, the better the bonus:</p>
+      <table>
+        <thead><tr><th>Quality</th><th>Trigger</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill pill-good">Perfect</span></td><td>Inside the &plusmn;1.5% window</td><td>+5% power factor, fastest shift time</td></tr>
+          <tr><td><span class="pill pill-warn">Good</span></td><td>Inside the &plusmn;5% window</td><td>Normal power factor, normal shift time</td></tr>
+          <tr><td><span class="pill pill-warn">Early</span></td><td>More than 300 rpm below window</td><td>-8% power factor for that gear</td></tr>
+          <tr><td><span class="pill pill-warn">Late</span></td><td>More than 300 rpm above window</td><td>-8% power factor for that gear</td></tr>
+          <tr><td><span class="pill pill-bad">Rejected</span></td><td>Shift requested while gas held</td><td>No shift; gear stays the same; haptic</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card" id="physics">
+      <h2>How your car&rsquo;s specs are used</h2>
+      <p>ModVala Drag does not use a lap counter or a fixed &ldquo;car level.&rdquo; Every race steps through a real physics simulation on each frame using your car&rsquo;s actual numbers. The inputs are:</p>
+      <ul>
+        <li><strong>Peak power (bhp) &amp; peak torque (Nm)</strong> at their rated rpm.</li>
+        <li><strong>Idle rpm &amp; redline rpm</strong>, which set the gear ratios&rsquo; usable range.</li>
+        <li><strong>Kerb weight (kg)</strong> plus an 80 kg driver.</li>
+        <li><strong>Drivetrain loss</strong> &mdash; FWD/RWD ~10%, AWD ~13%, motorcycle chain ~8%.</li>
+        <li><strong>Drag coefficient (Cd) &amp; frontal area (m&sup2;)</strong> &mdash; aerodynamic resistance grows with the square of your speed.</li>
+        <li><strong>Rolling resistance (Crr)</strong> &mdash; small, but matters off the line.</li>
+        <li><strong>Tire grip class</strong> &mdash; street (&micro;~0.85), sport (~1.05), or slick (~1.25). Caps the force you can put down before traction breaks.</li>
+        <li><strong>Final drive &amp; gear ratios</strong> &mdash; convert engine rpm into wheel speed.</li>
+        <li><strong>Shift time</strong> &mdash; manual ~180 ms, auto ~120 ms, DCT ~60 ms.</li>
+      </ul>
+      <p>Each physics step (120 times per second) the game computes:</p>
+      <div class="formula">rpm           = (v / wheel_radius) * gear_ratio * final_drive * 60 / (2&pi;)
+P_at_rpm      = piecewise interpolation of your power curve
+F_engine_max  = (P_at_rpm * 1000 * (1 - drivetrain_loss)) / max(v, 1.0)
+F_traction    = &micro;_grip * (mass * g) * weight_distribution    (launch phase)
+F_drag        = 0.5 * 1.225 * Cd * frontal_area * v&sup2;
+F_roll        = Crr * mass * g
+F_net         = min(F_engine_max, F_traction) - F_drag - F_roll
+acceleration  = F_net / mass</div>
+      <p>The model is <strong>tuned against six reference vehicles</strong> with known quarter-mile times. Realism check:</p>
+      <table>
+        <thead><tr><th>Car class</th><th>Power &amp; weight</th><th>Expected 1/4 mile</th><th>Trap speed</th></tr></thead>
+        <tbody>
+          <tr><td>Hot hatch</td><td>200 bhp / 900 kg / street</td><td>~14.5 s</td><td>~152 km/h</td></tr>
+          <tr><td>Sports coupe</td><td>500 bhp / 1200 kg / sport</td><td>~11.4 s</td><td>~200 km/h</td></tr>
+          <tr><td>Built drag car</td><td>1000 bhp / 1500 kg / slick</td><td>~9.2 s</td><td>~245 km/h</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card" id="mods">
+      <h2>How mods affect your race</h2>
+      <p>Every mod in ModVala has its own performance profile &mdash; not a flat &ldquo;+10% for exhaust&rdquo; rule. A Cobb Stage 1 ECU on a Subaru WRX behaves differently than an ECU flash on a Maruti Swift, and the game reflects that.</p>
+
+      <h3>What a mod can change</h3>
+      <ul>
+        <li><strong>Peak power (bhp) &amp; the rpm where peak power lands</strong> &mdash; intake/exhaust/ECU.</li>
+        <li><strong>Peak torque (Nm) &amp; its rpm</strong>.</li>
+        <li><strong>Redline rpm</strong> &mdash; race cam, valve springs.</li>
+        <li><strong>Kerb weight</strong> &mdash; lightweight wheels, carbon panels, gutted interior.</li>
+        <li><strong>Drag coefficient &amp; frontal area</strong> &mdash; splitters, wings, ride height.</li>
+        <li><strong>Tire grip class</strong> &mdash; street &rarr; sport &rarr; slick.</li>
+        <li><strong>Rolling resistance</strong> &mdash; tire compound.</li>
+        <li><strong>Drivetrain loss</strong> &mdash; lightweight flywheel, billet driveshaft.</li>
+        <li><strong>Launch traction factor</strong> &mdash; launch control, short-shift kits.</li>
+        <li><strong>Shift time</strong> &mdash; quick-shifter, paddle conversion.</li>
+        <li><strong>Reliability factor</strong> &mdash; below 1.0 means random power dips at high rpm.</li>
+      </ul>
+
+      <h3>Eligibility rules</h3>
+      <ul>
+        <li>Only mods with <strong>Verified = true</strong> are applied in standard mode. Unverified mods are visible in the planner but show a &ldquo;Not race-eligible&rdquo; chip on the drag-race garage card.</li>
+        <li><strong>Planned (not-installed)</strong> mods can be applied if you toggle <span class="pill pill-warn">Planned Build</span>. Free vs AI in the current phase; costs credits in PvP (see below).</li>
+        <li>Required-mod chains are enforced. Stage 2 ECU without intake + exhaust falls back to Stage 1 values.</li>
+      </ul>
+
+      <h3>Custom mods (auto-fetched)</h3>
+      <p>If you install a mod that is not in the curated catalog, ModVala fetches its performance profile in the background. The fetch is cached forever for that mod, so future races load instantly. If the fetch cannot verify the mod, it falls back to a conservative category archetype (e.g., generic intake = +2 bhp), with a &ldquo;Generic estimate&rdquo; chip on the garage card.</p>
+    </section>
+
+    <section class="card" id="points">
+      <h2>Race points &amp; leaderboard</h2>
+      <p>Race points are your <strong>skill metric</strong>. They climb the global ModVala Drag leaderboard, unlock badges, and bias matchmaking when PvP arrives.</p>
+      <table>
+        <thead><tr><th>Outcome</th><th>Rookie</th><th>Pro</th><th>Elite</th><th>Own Ghost</th></tr></thead>
+        <tbody>
+          <tr><td>Win</td><td>50</td><td>100</td><td>175</td><td>40</td></tr>
+          <tr><td>Lose by &lt; 0.30 s</td><td>15</td><td>30</td><td>55</td><td>15</td></tr>
+          <tr><td>Lose (otherwise)</td><td>5</td><td>10</td><td>20</td><td>5</td></tr>
+          <tr><td>Redlight</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        </tbody>
+      </table>
+      <h3>Bonus points</h3>
+      <ul>
+        <li><strong>+10</strong> for a new personal best on the car.</li>
+        <li><strong>+5</strong> for a reaction time under 0.20 s.</li>
+        <li><strong>+5</strong> for a shift-accuracy run above 90%.</li>
+        <li><strong>+5</strong> for finishing with no rejected paddles.</li>
+        <li><strong>x1.10</strong> &ldquo;clean run&rdquo; multiplier if you also stayed inside the perfect window on every shift.</li>
+      </ul>
+      <h3>Penalties</h3>
+      <ul>
+        <li><strong>-0</strong> for redlight (the loss is the penalty).</li>
+        <li><strong>-25%</strong> on the final points if you bailed out (paused, backgrounded the app, or quit before the finish line).</li>
+        <li><strong>Synthetic-stats races</strong> still award full points; this changes when PvP launches.</li>
+      </ul>
+    </section>
+
+    <section class="card" id="credits">
+      <h2>Credits &amp; the economy</h2>
+      <p>Credits are the in-app currency. Drag racing both earns and spends them; for the full credits policy across the rest of the app, see the <a href="credits.html">Credits Policy page</a>.</p>
+
+      <h3>How you earn credits in Drag</h3>
+      <ul>
+        <li><strong>Daily first race:</strong> 25 credits.</li>
+        <li><strong>Win streak:</strong> +5 credits per consecutive win, capped at +25/day.</li>
+        <li><strong>New personal best:</strong> 15 credits.</li>
+        <li><strong>Elite tier win:</strong> +10 bonus credits.</li>
+        <li><strong>Spectator mode:</strong> 1 credit / minute watching community races (launches with PvP).</li>
+      </ul>
+
+      <h3>What you spend credits on</h3>
+      <table>
+        <thead><tr><th>Item</th><th>Cost</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Planned-build race vs AI</td><td>Free (Phase 1A)</td><td>Simulate a future build without buying mods first.</td></tr>
+          <tr><td>Planned-build race in PvP</td><td>2 credits / entry</td><td>Pro-only. Opponent sees a &ldquo;planned build&rdquo; tag.</td></tr>
+          <tr><td>PvP 1v1 wager</td><td>5 &ndash; 100 credits</td><td>Winner takes the pot minus a small house fee.</td></tr>
+          <tr><td>Premium mods (slicks, NOS, race ECU stages)</td><td>50 &ndash; 250 credits</td><td>Pro-only. Required for certain build chains.</td></tr>
+          <tr><td>Re-skin your ghost car</td><td>30 credits</td><td>Pure cosmetic.</td></tr>
+          <tr><td>Retry a redlight</td><td>10 credits</td><td>One-tap rematch with the same opponent.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>House fee &amp; prize pool</h3>
+      <p>The small house fee on PvP wagers funds the <strong>weekly leaderboard prize pool</strong>. The top 100 on the global board each week split a credits payout proportional to their final position. There is no real-money payout.</p>
+    </section>
+
+    <section class="card" id="pro">
+      <h2>Pro features &amp; gates</h2>
+      <p>The free game is the full game: physics, AI tiers, ghosts, points, breakdown sheet, all daily credits. Pro adds:</p>
+      <ul>
+        <li><strong>PvP 1v1</strong> matches with credit wagers (launches in Phase 1B).</li>
+        <li><strong>Planned-build PvP</strong> races (Phase 1B).</li>
+        <li><strong>Premium mod tiers</strong> &mdash; slicks, NOS, race ECU Stage 3, lightweight billet internals.</li>
+        <li><strong>Unlimited ghost slots</strong> per car (free is one per build hash).</li>
+        <li><strong>Telemetry export</strong> &mdash; download your run as CSV for analysis.</li>
+        <li><strong>Custom paint &amp; livery</strong> on your ghost.</li>
+      </ul>
+      <p>Pro never sells points or race wins. Money cannot beat a better build &amp; cleaner driving.</p>
+    </section>
+
+    <section class="card" id="fair">
+      <h2>Fairness rules &amp; caps</h2>
+      <p>ModVala Drag has a single source of truth for vehicle specs (a curated catalog), and aggressive caps on mod stacking. You cannot turn a Swift into a Hayabusa with stickers.</p>
+      <ul>
+        <li><strong>Combined HP gain from mods is capped at +60%</strong> of baseline.</li>
+        <li><strong>Combined weight reduction is capped at -25%</strong> of kerb weight.</li>
+        <li><strong>Slicks &amp; NOS are gated behind Pro</strong> and are clearly tagged on the build card.</li>
+        <li><strong>OpenRouter / auto-fetched specs are sanity-clamped:</strong> power 30&ndash;2000 bhp, weight 80&ndash;5000 kg, torque 30&ndash;3000 Nm, Cd 0.20&ndash;0.55. Anything outside is rejected and the car is marked <em>Stats pending</em> instead of being raceable.</li>
+        <li><strong>Stage chains are enforced.</strong> Stage 2 ECU on a stock intake &amp; stock exhaust falls back to Stage 1 numbers, even if you mark it &ldquo;installed.&rdquo;</li>
+        <li><strong>No HP / torque / weight manual entry.</strong> Manual numeric entry was removed in Phase 1 specifically to stop leaderboard gaming.</li>
+        <li><strong>Backgrounding the app mid-race</strong> counts as a loss. You can&rsquo;t pause-engineer a faster shift.</li>
+      </ul>
+      <p>Suspect a build is gaming the system? Use the <a href="support.html">Support</a> page to report it. Confirmed exploits result in the run being voided and the credits returned to the matchmaking pool.</p>
+    </section>
+
+    <section class="card" id="faq">
+      <h2>FAQ &amp; troubleshooting</h2>
+      <h3>My race screen says &ldquo;Estimated stats &mdash; couldn&rsquo;t verify&rdquo;</h3>
+      <p>The auto-fetch for your custom vehicle didn&rsquo;t find three trustworthy sources. The race still runs using a synthetic profile derived from the baseline you set in onboarding. You can retry the fetch from the garage card later; once verified, your stats become race-eligible again.</p>
+
+      <h3>I keep getting &ldquo;Rejected&rdquo; on my shifts</h3>
+      <p>That&rsquo;s the throttle-shift interlock. You can&rsquo;t shift while the gas is held. Lift &mdash; shift &mdash; re-throttle. It costs you a few hundredths but protects the &ldquo;perfect shift&rdquo; bonus.</p>
+
+      <h3>The AI Elite tier seems impossibly fast</h3>
+      <p>Elite has a 0.15 s reaction time, 95% shift accuracy and a small +3% effective-power boost so the matchup stays interesting even against a built car. If you can beat Elite consistently, you should be racing PvP for credit wagers.</p>
+
+      <h3>No sound during the race</h3>
+      <p>Make sure your phone isn&rsquo;t on silent. The audio assets are bundled with the app &mdash; no network needed. If you still hear nothing, force-quit the app and reopen; the audio engine reinitializes on cold start.</p>
+
+      <h3>Where does the leaderboard go?</h3>
+      <p>Phase 1A keeps results local to your phone. Phase 1B introduces opt-in PvP, the global leaderboard and the weekly credit prize pool. You will be asked to consent before any race data leaves your device.</p>
+
+      <h3>I want to back up my ghosts &amp; personal bests</h3>
+      <p>Pro export will be added with PvP. In the meantime, drag-race results are stored in the same local database as the rest of ModVala and travel with the app&rsquo;s standard backup &amp; restore.</p>
+    </section>
+
+    <section class="card">
+      <h2>Legal &amp; grievance contact</h2>
+      <p>ModVala Drag is part of the ModVala Android app, operated by Pascoal Dsouza, Maharashtra, India.</p>
+      <p>Privacy and grievance contact: <a href="mailto:valan.dj@gmail.com">valan.dj@gmail.com</a>. App and general support: <a href="mailto:pascoaldsouza28@gmail.com">pascoaldsouza28@gmail.com</a>.</p>
+      <p>See also the <a href="terms.html">Terms of Service</a>, the <a href="credits.html">Credits Policy</a>, and the <a href="community-guidelines.html">Community Guidelines</a> for the rules that apply across the full app.</p>
+    </section>
+  </main>
+  <footer><div class="wrap">ModVala &mdash; Plan it. Build it. Forge your garage.</div></footer>
+  <footer class="modvala-footer">
+    <p>Developed &amp; maintained by <strong>Pascoal Dsouza</strong> (<em>PsYc+GoD AI&amp;ML</em>) &mdash; ModVala, Maharashtra, India</p>
+    <p>Contact: <a href="mailto:pascoaldsouza28@gmail.com">pascoaldsouza28@gmail.com</a></p>
+  </footer>
+</body>
+</html>
